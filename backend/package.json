@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "clarifai-nodejs-grpc": "^10.8.7",
+    "express": "^4.21.0"
+  }
+}
