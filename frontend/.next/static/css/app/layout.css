@@ -521,6 +521,32 @@ video {
 [hidden] {
   display: none;
 }
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-center {
+  align-items: center;
+}
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.pt-4 {
+  padding-top: 1rem;
+}
+.pt-56 {
+  padding-top: 14rem;
+}
+.pt-6 {
+  padding-top: 1.5rem;
+}
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 :root {
   --background: #ffffff;

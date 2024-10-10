@@ -3,9 +3,11 @@ const path = require('path');
 const bodyParser = require('body-parser')
 const http = require('http');
 const predictRouter = require('./routes/predict');
+const cors = require('cors');
 
 const app = express();
 // We added bodyParser so that we can access `body` in `req` later
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')));
