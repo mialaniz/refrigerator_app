@@ -7,7 +7,7 @@ import fridge from "../public/fridge.jpg";
 import axios from "axios";
 
 export default function Home() {
-  const [image, setImageURL] = useState("https://samples.clarifai.com/metro-north.jpg"); // default value. make sure to remove.
+  const [image, setImageURL] = useState("https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefrigerator_v1c_0.jpg"); // default value. make sure to remove.
   const [foodData, setFoodData] = useState([]);
 
   const handleChange = (e) => {
@@ -28,13 +28,15 @@ export default function Home() {
       <div className="flex pt-20 justify-between ml-36">
     <FormControl>
       <div>
-        <Input
-          value={image} 
-          onChange={handleChange} 
-          className="bg-white ml-40" 
-          id="my-input" 
-          aria-describedby="my-helper-text"
-        />
+      <InputLabel variant="outlined" htmlFor="my-input" className="bg-white ml-40">
+        Enter an Image URL
+      </InputLabel>
+      <Input
+        id="my-input"
+        value={image}
+        onChange={handleChange}
+        className="ml-40"
+      />
 
         <img 
         className="pt-4"
