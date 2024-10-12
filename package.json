@@ -4,7 +4,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "concurrently \"cd backend && node index.js\" \"cd frontend && npm run dev\""
+    "deploy": "concurrently \"cd backend && node index.js\" \"cd frontend && npm run dev\"",
+    "install": "concurrently \"cd backend && npm install\" \"cd frontend && npm install\"",
+    "prepare": "npm run install",
+    "vercel-build": "npm run prepare && npm run deploy"
   },
   "author": "",
   "license": "ISC",
