@@ -18,40 +18,61 @@ export default function Home() {
     axios.post('http://localhost:8080/predict', {
       imageURL: image
     }).then((res) => {
-      
-      alert(JSON.stringify(res.data))
       setFoodData(res.data); // loads food data into a list
-
     }).catch((err) => {
       alert(err)
     });
   }
 
   return (
-    <div className="flex flex-col items-center pt-56">
-      <FormControl>
-        <Input 
-        value={image} 
-        onChange={handleChange} 
-        className="bg-white" id="my-input" aria-describedby="my-helper-text"/>
-        
+      <div className="flex pt-20 justify-between ml-36">
+    <FormControl>
+      <div>
+        <Input
+          value={image} 
+          onChange={handleChange} 
+          className="bg-white ml-40" 
+          id="my-input" 
+          aria-describedby="my-helper-text"
+        />
+
+        <img 
+        className="pt-4"
+        src={image} 
+        width="500" 
+        height="600"/>
+      
+
         <div className="pt-4">
           <Button 
-          onClick={predict} 
-          className="flex"variant="contained">Submit</Button>
+            onClick={predict} 
+            className="flex ml-48 justify-center" 
+            variant="contained"
+          >
+            Submit
+          </Button>
         </div>
+      </div>
+    </FormControl>
 
-        <div className="pt-6">
+    <div className="mr-96">
+      <div className="flex-row pt-6">
+          <Typography className="text-black font-black text-decoration-line: underline">
+            Food in Refrigerator
+          </Typography>
           <ul>
             {foodData.map((food, index) => (
               <li key={index}>
-                {food.name}: {food.value}
+                <div className="flex pt-4">
+                  <Paper>
+                    {food.name}
+                  </Paper>
+                </div>
               </li>
             ))}
           </ul>
         </div>
-      
-      </FormControl>
+      </div>
     </div>
   );
 }

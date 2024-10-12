@@ -12,9 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/hello', function (req, res) { 
-  res.send("hello")
-});
+
 app.use('/predict', predictRouter);
 
 app.get('/', function (req, res) {
