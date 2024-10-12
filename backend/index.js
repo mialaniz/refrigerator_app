@@ -7,17 +7,11 @@ const cors = require('cors');
 
 const app = express();
 // We added bodyParser so that we can access `body` in `req` later
-app.use(cors(
-  {
-    origin: ["https://refrigerator-app.vercel.app"],
-    methods:["GET"],
-    credentials: true
-  }
-
-));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors());
 
 
 app.use('/predict', predictRouter);
