@@ -1,38 +1,53 @@
 "use client";
-import React, {useState}from "react";
+import React, { useState } from "react";
 import { FormControl, InputLabel, Input, Button } from "@mui/material";
 import axios from "axios";
-import {Londrina_Solid} from "next/font/google"
+import { Londrina_Solid } from "next/font/google";
 
+// Define the interface for food items
+interface FoodItem {
+  name: string;
+}
 
 const font = Londrina_Solid({
-  subsets: ['latin'], 
-  weight: '400'});
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export default function Home() {
-  const [image, setImageURL] = useState("https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefrigerator_v1c_0.jpg"); //default image. This state variable is what we send to the api.
-  const [foodData, setFoodData] = useState([]); //holds the response to the api.
+  const [image, setImageURL] = useState(
+    "https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefrigerator_v1c_0.jpg"
+  );
+  
+  // Annotate foodData with the FoodItem[] type
+  const [foodData, setFoodData] = useState<FoodItem[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setImageURL(e.target.value);
   };
 
   const predict = () => {
-    axios.post('http://localhost:8080/predict', {
-      imageURL: image
-    }).then((res) => {
-      setFoodData(res.data); // loads food data into a list
-    }).catch((err) => {
-      alert(err)
-    });
-  }
+    axios.post<FoodItem[]>("http://localhost:8080/predict", {
+        imageURL: image,
+      })
+      .then((res) => {
+        setFoodData(res.data); 
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
 
   return (
     <div className={font.className}>
-        <div className="flex pt-20 justify-between ml-36">
-          <FormControl>
-            <div>
-            <InputLabel variant="outlined" htmlFor="my-input" className={`${font.className} bg-white ml-40`}>
+      <div className="flex pt-20 justify-between ml-36">
+        <FormControl>
+          <div>
+            <InputLabel
+              variant="outlined"
+              htmlFor="my-input"
+              className={`${font.className} bg-white ml-40`}
+            >
               Enter an Image URL
             </InputLabel>
             <Input
@@ -42,35 +57,29 @@ export default function Home() {
               className="ml-40"
             />
 
-              <img 
-              className="pt-4"
-              src={image} 
-              width="500" 
-              height="600"/>
-            
-              <div className="pt-4">
-                <Button 
-                  onClick={predict} 
-                  className={`${font.className} flex ml-48 justify-center`} 
-                  variant="contained"
-                >
-                  Submit
-                </Button>
-              </div>
-            </div>
-          </FormControl>
+            <img className="pt-4" src={image} width="500" height="600" />
 
-      <div className="mr-96">
-        <div className={`${font.className} flex-row pt-6`}>
+            <div className="pt-4">
+              <Button
+                onClick={predict}
+                className={`${font.className} flex ml-48 justify-center`}
+                variant="contained"
+              >
+                Submit
+              </Button>
+            </div>
+          </div>
+        </FormControl>
+
+        <div className="mr-96">
+          <div className={`${font.className} flex-row pt-6`}>
             <div className="text-black text-decoration-line: underline">
               Food in Refrigerator
-              </div>
+            </div>
             <ul>
               {foodData.map((food, index) => (
                 <li key={index}>
-                  <div className=" text-black flex pt-2">
-                      {food.name}
-                  </div>
+                  <div className="text-black flex pt-2">{food.name}</div>
                 </li>
               ))}
             </ul>
