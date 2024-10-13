@@ -13,7 +13,7 @@ export default function Home() {
   const [image, setImageURL] = useState("https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefrigerator_v1c_0.jpg"); //default image. This state variable is what we send to the api.
   const [foodData, setFoodData] = useState([]); //holds the response to the api.
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setImageURL(e.target.value);
   };
 
