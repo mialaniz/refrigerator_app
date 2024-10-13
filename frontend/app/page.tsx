@@ -1,7 +1,6 @@
 "use client";
 import React, {useState}from "react";
-import Image from "next/image";
-import { Paper, Typography, FormControl, InputLabel, Input, Button } from "@mui/material";
+import { FormControl, InputLabel, Input, Button } from "@mui/material";
 import axios from "axios";
 import {Londrina_Solid} from "next/font/google"
 
