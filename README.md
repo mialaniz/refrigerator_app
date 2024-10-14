@@ -1,8 +1,14 @@
 # Food Ingredient Detection App
+https://refrigerator-app.vercel.app/
 
 ## Overview
 
 This project is a web application for detecting food ingredients from uploaded the image URL. The application consists of a frontend and a backend that communicate through APIs. The backend leverages the Clarifai API for food image recognition.
+
+
+## How It Works
+Enter a link to an image of a refrigerator. This will then send the link to the Clarifai model. After this is done, it will output the ingredients/food that the it contains. It has the default link:
+https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefrigerator_v1c_0.jpg, but it can easily be changed to your own link. 
 
 
 ### Frontend
