@@ -74,7 +74,7 @@ export default function Home() {
         <div className="w-full md:w-1/2 mt-10 md:mt-0">
           <div className="bg-white shadow-md rounded-lg p-6">
             <h2 className="text-black text-2xl font-semibold mb-4">
-              Food in Refrigerator
+            Ingredients Available
             </h2>
             <ul>
               {foodData.map((food, index) => (
