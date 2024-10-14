@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
-import { Londrina_Solid } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
 
 // Define the interface for food items
 interface FoodItem {
   name: string;
 }
 
-const font = Londrina_Solid({
+const font = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: "400",
 });
@@ -40,10 +40,10 @@ export default function Home() {
   return (
     <div className={`${font.className} container mx-auto py-20`}>
       <div className="flex flex-col md:flex-row justify-center items-start md:space-x-10">
-        {/* Left column - Form and Image */}
+        
         <div className="w-full md:w-1/2">
           <div className="bg-white shadow-md rounded-lg p-6">
-            {/* Input field */}
+            
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Enter Image URL
             </label>
@@ -57,6 +57,7 @@ export default function Home() {
             <div className="mt-4">
               <img src={image} alt="Selected" className="w-full rounded-lg" />
             </div>
+            
             {/* Submit Button */}
             <div className="mt-4 text-center">
               <button
@@ -68,7 +69,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* Right column - Food Data */}
+        
+        {/* Food Data */}
         <div className="w-full md:w-1/2 mt-10 md:mt-0">
           <div className="bg-white shadow-md rounded-lg p-6">
             <h2 className="text-black text-2xl font-semibold mb-4">
