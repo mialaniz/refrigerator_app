@@ -8,14 +8,14 @@ interface FoodItem {
   name: string;
 }
 
-const font = IBM_Plex_Mono({
+const font = IBM_Plex_Mono({ //Can be changed.
   subsets: ["latin"],
   weight: "400",
 });
 
 export default function Home() {
   const [image, setImageURL] = useState(
-    "https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefrigerator_v1c_0.jpg"
+    "https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefrigerator_v1c_0.jpg" // Default link.
   );
 
   const [foodData, setFoodData] = useState<FoodItem[]>([]);
@@ -24,6 +24,7 @@ export default function Home() {
     setImageURL(e.target.value);
   };
 
+  //Calls the express backend and sends the link to the API.
   const predict = () => {
     axios
       .post<FoodItem[]>(`${process.env.NEXT_PUBLIC_SERVER}/predict`, {

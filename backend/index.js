@@ -6,18 +6,17 @@ const predictRouter = require('./routes/predict');
 const cors = require('cors');
 
 const app = express();
-// We added bodyParser so that we can access `body` in `req` later
+
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors());
 
-
+//Middleware that sends a link to the router.
 app.use('/predict', predictRouter);
 
 app.get('/', function (req, res) {
-
   res.send("launched");
   return res.sendFile(path.join(__dirname, "build", "index.html"))
 })
