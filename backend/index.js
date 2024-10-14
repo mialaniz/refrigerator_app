@@ -17,6 +17,8 @@ app.use(cors());
 app.use('/predict', predictRouter);
 
 app.get('/', function (req, res) {
+
+  res.send("launched");
   return res.sendFile(path.join(__dirname, "build", "index.html"))
 })
 
