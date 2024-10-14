@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { FormControl, InputLabel, Input, Button } from "@mui/material";
+import { FormControl, InputLabel, Button, Paper } from "@mui/material";
+import { Input } from "@nextui-org/input";
 import axios from "axios";
 import { Londrina_Solid } from "next/font/google";
 
@@ -40,25 +41,27 @@ export default function Home() {
   return (
     <div className={font.className}>
       <div className="flex pt-20 justify-between ml-36">
+        
         <FormControl>
           <div>
-            <InputLabel
-              variant="outlined"
-              htmlFor="my-input"
-              className={`${font.className} bg-white ml-40`}
-            >
-              Enter an Image URL
-            </InputLabel>
+            <Paper className="bg-purple-900 rounded-xl">
+            <div>
             <Input
-              id="my-input"
+              label="Enter Image URL"
+              variant="bordered"
               value={image}
               onChange={handleChange}
-              className="ml-40"
+              className="ml-40 rounded-lg max-w-xs"
+              classNames={{
+                input: "bg-gray-400", // Set the background color here
+              }}
             />
+            </div>
+            <div className="pt-4 px-4">
+                <img src={image} width="500" height="600" />
+              </div>
 
-            <img className="pt-4" src={image} width="500" height="600" />
-
-            <div className="flex pt-4">
+            <div className=" flex pb-10 pt-4">
               <Button
                 onClick={predict}
                 className={`${font.className} flex ml-48 justify-center`}
@@ -67,8 +70,10 @@ export default function Home() {
                 Submit
               </Button>
             </div>
+            </Paper>
           </div>
         </FormControl>
+        
 
         <div className="mr-96">
           <div className={`${font.className} flex-row pt-6`}>
