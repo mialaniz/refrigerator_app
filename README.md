@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a web application for detecting food ingredients from uploaded images. The application consists of a frontend and a backend that communicate through APIs. The backend leverages the Clarifai API for food image recognition.
+This project is a web application for detecting food ingredients from uploaded the image URL. The application consists of a frontend and a backend that communicate through APIs. The backend leverages the Clarifai API for food image recognition.
 
 
 ### Frontend
