@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { FormControl, InputLabel, Button, Paper } from "@mui/material";
-import { Input } from "@nextui-org/input";
 import axios from "axios";
 import { Londrina_Solid } from "next/font/google";
 
@@ -19,7 +17,7 @@ export default function Home() {
   const [image, setImageURL] = useState(
     "https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefrigerator_v1c_0.jpg"
   );
-  
+
   const [foodData, setFoodData] = useState<FoodItem[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,11 +25,12 @@ export default function Home() {
   };
 
   const predict = () => {
-    axios.post<FoodItem[]>(`${process.env.NEXT_PUBLIC_SERVER}/predict`, {
+    axios
+      .post<FoodItem[]>(`${process.env.NEXT_PUBLIC_SERVER}/predict`, {
         imageURL: image,
       })
       .then((res) => {
-        setFoodData(res.data); 
+        setFoodData(res.data);
       })
       .catch((err) => {
         alert(err);
@@ -39,51 +38,44 @@ export default function Home() {
   };
 
   return (
-    <div className={font.className}>
-      <div className="flex pt-20 justify-between ml-36">
-        
-        <FormControl>
-          <div>
-            <Paper className="bg-purple-900 rounded-xl">
-            <div>
-            <Input
-              label="Enter Image URL"
-              variant="bordered"
+    <div className={`${font.className} container mx-auto py-20`}>
+      <div className="flex flex-col md:flex-row justify-center items-start md:space-x-10">
+        {/* Left column - Form and Image */}
+        <div className="w-full md:w-1/2">
+          <div className="bg-white shadow-md rounded-lg p-6">
+            {/* Input field */}
+            <label className="block text-gray-700 text-sm font-bold mb-2">
+              Enter Image URL
+            </label>
+            <input
+              type="text"
               value={image}
               onChange={handleChange}
-              className="ml-40 rounded-lg max-w-xs"
-              classNames={{
-                input: "bg-gray-400", // Set the background color here
-              }}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
+            {/* Image */}
+            <div className="mt-4">
+              <img src={image} alt="Selected" className="w-full rounded-lg" />
             </div>
-            <div className="pt-4 px-4">
-                <img src={image} width="500" height="600" />
-              </div>
-
-            <div className=" flex pb-10 pt-4">
-              <Button
+            {/* Submit Button */}
+            <div className="mt-4 text-center">
+              <button
                 onClick={predict}
-                className={`${font.className} flex ml-48 justify-center`}
-                variant="contained"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 Submit
-              </Button>
+              </button>
             </div>
-            </Paper>
           </div>
-        </FormControl>
-        
-
-        <div className="mr-96">
-          <div className={`${font.className} flex-row pt-6`}>
-            <div className="text-black text-decoration-line: underline">
-              Food in Refrigerator
-            </div>
+        </div>
+        {/* Right column - Food Data */}
+        <div className="w-full md:w-1/2 mt-10 md:mt-0">
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <h2 className="text-2xl font-semibold mb-4">Food in Refrigerator</h2>
             <ul>
               {foodData.map((food, index) => (
-                <li key={index}>
-                  <div className="text-black flex pt-2">{food.name}</div>
+                <li key={index} className="py-2 border-b">
+                  {food.name}
                 </li>
               ))}
             </ul>
