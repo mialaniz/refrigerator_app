@@ -26,7 +26,7 @@ export default function Home() {
   };
 
   const predict = () => {
-    axios.post<FoodItem[]>("https://refrigerator-app-server.vercel.app/?vercelToolbarCode=Rs0iAlTCqxC_Z6a/predict", {
+    axios.post<FoodItem[]>("http://refrigerator-app-server-bnxuytuyr-michael-alanizs-projects.vercel.app/predict", {
         imageURL: image,
       })
       .then((res) => {
