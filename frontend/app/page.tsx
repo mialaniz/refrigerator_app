@@ -71,10 +71,12 @@ export default function Home() {
         {/* Right column - Food Data */}
         <div className="w-full md:w-1/2 mt-10 md:mt-0">
           <div className="bg-white shadow-md rounded-lg p-6">
-            <h2 className="text-2xl font-semibold mb-4">Food in Refrigerator</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">
+              Food in Refrigerator
+            </h2>
             <ul>
               {foodData.map((food, index) => (
-                <li key={index} className="py-2 border-b">
+                <li key={index} className="text-black py-2 border-b">
                   {food.name}
                 </li>
               ))}
