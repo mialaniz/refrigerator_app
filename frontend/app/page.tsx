@@ -58,7 +58,7 @@ export default function Home() {
 
             <img className="pt-4" src={image} width="500" height="600" />
 
-            <div className="pt-4">
+            <div className="flex pt-4">
               <Button
                 onClick={predict}
                 className={`${font.className} flex ml-48 justify-center`}
