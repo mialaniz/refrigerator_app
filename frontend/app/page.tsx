@@ -19,7 +19,6 @@ export default function Home() {
     "https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefrigerator_v1c_0.jpg"
   );
   
-  // Annotate foodData with the FoodItem[] type
   const [foodData, setFoodData] = useState<FoodItem[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
