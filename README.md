@@ -34,18 +34,6 @@ https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefri
 - **dotenv**: For managing environment variables like API keys.
 - **Vercel**: For deployment.
 
-## Setup and Installation
-
-### Prerequisites
-- Node.js and npm installed.
-- A Clarifai API key for the backend.
-
-### Environment Variables
-The `.env` file should contain:
-```bash
-CLARIFI_KEY=<Your Clarifai API Key>
-```
-
 ## Challenges
 The biggest challenge was connecting the Express server to the Clarifai API. Since Clarifai has many prebuilt models, finding the right one for this project was difficult. I settled with the basic Food Detection Model since it was the most accurate for this task. I found this by experimenting with multiple models and multiple pictures.
 
