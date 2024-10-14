@@ -13,7 +13,7 @@ metadata.set("authorization", `Key ${process.env.CLARIFI_KEY}`);
 
 function prediction(inputs) {
     return new Promise((resolve, reject) => {
-        stub.PostModelOutputs(
+        stub.PostModelOutputs( 
             {
                 user_app_id: {
                     "user_id": 'clarifai',
