@@ -2,13 +2,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { IBM_Plex_Mono } from "next/font/google";
+import { Backdrop, CircularProgress } from "@mui/material";
 
 // Define the interface for food items
 interface FoodItem {
   name: string;
 }
 
-const font = IBM_Plex_Mono({ //Can be changed.
+const font = IBM_Plex_Mono({ // Can be changed.
   subsets: ["latin"],
   weight: "400",
 });
@@ -17,24 +18,27 @@ export default function Home() {
   const [image, setImageURL] = useState(
     "https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefrigerator_v1c_0.jpg" // Default link.
   );
-
   const [foodData, setFoodData] = useState<FoodItem[]>([]);
+  const [loading, setLoading] = useState(false); // Loading state
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setImageURL(e.target.value);
   };
 
-  //Calls the express backend and sends the link to the API.
+  // Calls the express backend and sends the link to the API.
   const predict = () => {
+    setLoading(true); // Set loading to true when the request starts
     axios
       .post<FoodItem[]>(`${process.env.NEXT_PUBLIC_SERVER}/predict`, {
         imageURL: image,
       })
       .then((res) => {
         setFoodData(res.data);
+        setLoading(false); // Set loading to false when data is received
       })
       .catch((err) => {
         alert(err);
+        setLoading(false); // Set loading to false if there's an error
       });
   };
 
@@ -75,7 +79,7 @@ export default function Home() {
         <div className="w-full md:w-1/2 mt-10 md:mt-0">
           <div className="bg-white shadow-md rounded-lg p-6">
             <h2 className="text-black text-2xl font-semibold mb-4">
-            Ingredients Available
+              Ingredients Available
             </h2>
             <ul>
               {foodData.map((food, index) => (
@@ -87,6 +91,14 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Backdrop with CircularProgress */}
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading} // Show backdrop when loading is true
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }
