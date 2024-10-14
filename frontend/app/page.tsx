@@ -26,7 +26,7 @@ export default function Home() {
   };
 
   const predict = () => {
-    axios.post<FoodItem[]>("http://refrigerator-app-server.vercel.app/predict", {
+    axios.post<FoodItem[]>(`${process.env.NEXT_PUBLIC_SERVER}/predict`, {
         imageURL: image,
       })
       .then((res) => {
