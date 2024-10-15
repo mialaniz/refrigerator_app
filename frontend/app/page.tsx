@@ -9,14 +9,16 @@ interface FoodItem {
   name: string;
 }
 
-const font = IBM_Plex_Mono({ // Can be changed.
+// Can be changed.
+const font = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: "400",
 });
 
 export default function Home() {
   const [image, setImageURL] = useState(
-    "https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefrigerator_v1c_0.jpg" // Default link.
+    // Default link.
+    "https://lg-sks-content.s3.us-west-1.amazonaws.com/2023-01/sks_48-frenchdoorrefrigerator_v1c_0.jpg"
   );
   const [foodData, setFoodData] = useState<FoodItem[]>([]);
   const [loading, setLoading] = useState(false); // Loading state
@@ -27,18 +29,20 @@ export default function Home() {
 
   // Calls the express backend and sends the link to the API.
   const predict = () => {
-    setLoading(true); // Set loading to true when the request starts
+    
+    
+    setLoading(true);
     axios
       .post<FoodItem[]>(`${process.env.NEXT_PUBLIC_SERVER}/predict`, {
         imageURL: image,
       })
       .then((res) => {
         setFoodData(res.data);
-        setLoading(false); // Set loading to false when data is received
+        setLoading(false); 
       })
       .catch((err) => {
         alert(err);
-        setLoading(false); // Set loading to false if there's an error
+        setLoading(false);
       });
   };
 
@@ -95,7 +99,7 @@ export default function Home() {
       {/* Backdrop with CircularProgress */}
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={loading} // Show backdrop when loading is true
+        open={loading}
       >
         <CircularProgress color="inherit" />
       </Backdrop>
